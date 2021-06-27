@@ -27,9 +27,9 @@ public class Repository {
     }
 
     public Flight findById(int id) {
-        for (Flight item : flights) {
-            if (item.getId() == id) {
-                return item;
+        for (Flight flight : flights) {
+            if (flight.getId() == id) {
+                return flight;
             }
         }
         return null;

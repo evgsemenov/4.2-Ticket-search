@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 public class Flight implements Comparable<Flight> {
     private int id;
     private int cost;
-    private String departure;
-    private String arrival;
+    private String from;
+    private String to;
     private int flightTime;
 
     @Override
