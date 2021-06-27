@@ -24,8 +24,8 @@ public class Manager {
     public Flight[] findByDestinations(String from, String to) {
         Flight[] foundedFlights = new Flight[0];
         for (Flight flight : repo.findAll()) {
-            if ((flight.getFrom() == from) && (flight.getTo() == to)) {
-//             TODO  внедрить // public boolean equalsIgnoreCase(String anotherString)
+//            if ((flight.getFrom() == from) && (flight.getTo() == to)) {
+                if (((flight.getFrom().equalsIgnoreCase(from))) && (flight.getTo().equalsIgnoreCase(to))); {
                 add(flight);
             }
         }
