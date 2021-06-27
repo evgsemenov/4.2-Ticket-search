@@ -21,11 +21,11 @@ public class Manager {
         repo.removeById(id);
     }
 
-    public Flight[] findAll(String from, String to) {
+    public Flight[] findByDestinations(String from, String to) {
         Flight[] foundedFlights = new Flight[0];
         for (Flight flight : repo.findAll()) {
             if ((flight.getFrom() == from) && (flight.getTo() == to)) {
-//                public boolean equalsIgnoreCase(String anotherString)
+//             TODO  внедрить // public boolean equalsIgnoreCase(String anotherString)
                 add(flight);
             }
         }
