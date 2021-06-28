@@ -32,6 +32,7 @@ class RepositoryTest {
         repository.save(flight8);
         repository.save(flight9);
     }
+
     @Test
     public void shouldFindAll() {
         Flight[] expected = new Flight[]{flight1, flight2, flight3, flight4, flight5, flight6, flight7, flight8, flight9};
@@ -46,17 +47,19 @@ class RepositoryTest {
             repository.removeById(15);
         });
     }
+
     @Test
-    public void shouldRemoveByIdIfExist(){
+    public void shouldRemoveByIdIfExist() {
         repository.removeById(5);
-        Flight[] expected = new Flight[]{flight1, flight2, flight3, flight4, flight6, flight7, flight8, flight9 };
+        Flight[] expected = new Flight[]{flight1, flight2, flight3, flight4, flight6, flight7, flight8, flight9};
         Flight[] actual = repository.findAll();
 
         assertArrayEquals(actual, expected);
     }
+
     @Test
 
-    public void shouldFindById(){
+    public void shouldFindById() {
         Flight expected = flight4;
         Flight actual = repository.findById(4);
         assertEquals(actual, expected);

@@ -39,6 +39,13 @@ public class ManagerTest {
     }
 
     @Test
+    public void shouldRemoveByIdIfExist() {
+        manager.removeById(9);
+        Flight[] expected = new Flight[]{flight1, flight2, flight3, flight4, flight5, flight6, flight7, flight8};
+        Flight[] actual = repository.findAll();
+    }
+
+    @Test
     public void shouldSortByCost() {
         Flight[] expected = new Flight[]{flight2, flight1, flight3, flight7, flight9, flight5, flight6, flight8, flight4};
         Flight[] actual = new Flight[]{flight1, flight2, flight3, flight4, flight5, flight6, flight7, flight8, flight9};
@@ -59,18 +66,20 @@ public class ManagerTest {
     }
 
     @Test
-    @Disabled
-    public void shouldFindAll() {
-        Flight[] expected = new Flight[]{flight1, flight2, flight3, flight4, flight5, flight6, flight7, flight8, flight9};
-        Flight[] actual = repository.findAll();
+    void shouldReturnNullIfFindByDestinationNotFound() {
+        Flight[] expected = new Flight[]{};
+        Flight[] actual = manager.findByDestinations("MUN", "LED");
+
+        Arrays.sort(actual);
 
         assertArrayEquals(actual, expected);
     }
 
     @Test
-    public void shouldThrowNotFoundExceptionIfRemoveByIdNotExist() {
-        assertThrows(NotFoundException.class, () -> {
-            repository.removeById(15);
-        });
+    void shouldIgnoreCaseWhenFindByDestination(){
+        Flight[] expected = new Flight[]{flight1, flight5};
+        Flight[] actual = manager.findByDestinations("dMe", "lEd");
+
+        assertArrayEquals(actual, expected);
     }
 }
