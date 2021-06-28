@@ -21,27 +21,6 @@ public class Manager {
         repo.removeById(id);
     }
 
-//    public Flight[] findByDestinations1(String from, String to) {
-//        Flight[] foundedFlights = new Flight[0];
-//        for (Flight flight : repo.findAll()) {
-//            if (((flight.getFrom().equalsIgnoreCase(from))) && (flight.getTo().equalsIgnoreCase(to))) ;
-//            {
-//                add(flight);
-//            }
-//        }
-//        return foundedFlights;
-//    }
-//
-//    public void add(Flight flight) {
-//        Flight[] foundedFlights = new Flight[0];
-//        int length = foundedFlights.length + 1;
-//        Flight[] tmp = new Flight[length];
-//        System.arraycopy(foundedFlights, 0, tmp, 0, foundedFlights.length);
-//        int lastIndex = tmp.length - 1;
-//        tmp[lastIndex] = flight;
-//        foundedFlights = tmp;
-//    }
-
     public Flight[] findByDestinations(String from, String to) {
         Flight[] foundedFlights = new Flight[0];
         for (Flight flight : repo.findAll()) {
