@@ -1,5 +1,6 @@
-package manager;
+package repository;
 
+import domain.Flight;
 import exception.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -7,13 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import domain.Flight;
-import repository.Repository;
-
-import java.util.Arrays;
-
-public class ManagerTest {
-    private Manager manager = new Manager();
+class RepositoryTest {
     private Repository repository = new Repository();
     private Flight flight1 = new Flight(1, 5100_00, "DME", "LED", 100);
     private Flight flight2 = new Flight(2, 5000_00, "LED", "DME", 95);
@@ -27,39 +22,17 @@ public class ManagerTest {
 
     @BeforeEach
     public void setupFlights() {
-        manager.save(flight1);
-        manager.save(flight2);
-        manager.save(flight3);
-        manager.save(flight4);
-        manager.save(flight5);
-        manager.save(flight6);
-        manager.save(flight7);
-        manager.save(flight8);
-        manager.save(flight9);
+        repository.save(flight1);
+        repository.save(flight2);
+        repository.save(flight3);
+        repository.save(flight4);
+        repository.save(flight5);
+        repository.save(flight6);
+        repository.save(flight7);
+        repository.save(flight8);
+        repository.save(flight9);
     }
-
     @Test
-    public void shouldSortByCost() {
-        Flight[] expected = new Flight[]{flight2, flight1, flight3, flight7, flight9, flight5, flight6, flight8, flight4};
-        Flight[] actual = new Flight[]{flight1, flight2, flight3, flight4, flight5, flight6, flight7, flight8, flight9};
-
-        Arrays.sort(actual);
-
-        assertArrayEquals(actual, expected);
-    }
-
-    @Test
-    public void shouldFindByDestinationsAndSortByCost() {
-        Flight[] expected = new Flight[]{flight3, flight7, flight6};
-        Flight[] actual = manager.findByDestinations("PRG", "MUN");
-
-        Arrays.sort(actual);
-
-        assertArrayEquals(actual, expected);
-    }
-
-    @Test
-    @Disabled
     public void shouldFindAll() {
         Flight[] expected = new Flight[]{flight1, flight2, flight3, flight4, flight5, flight6, flight7, flight8, flight9};
         Flight[] actual = repository.findAll();
@@ -73,4 +46,20 @@ public class ManagerTest {
             repository.removeById(15);
         });
     }
+    @Test
+    public void shouldRemoveByIdIfExist(){
+        repository.removeById(5);
+        Flight[] expected = new Flight[]{flight1, flight2, flight3, flight4, flight6, flight7, flight8, flight9 };
+        Flight[] actual = repository.findAll();
+
+        assertArrayEquals(actual, expected);
+    }
+    @Test
+
+    public void shouldFindById(){
+        Flight expected = flight4;
+        Flight actual = repository.findById(4);
+        assertEquals(actual, expected);
+    }
 }
+
