@@ -11,6 +11,7 @@ import domain.Flight;
 import repository.Repository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class ManagerTest {
     private Manager manager = new Manager();
@@ -60,8 +61,6 @@ public class ManagerTest {
         Flight[] expected = new Flight[]{flight3, flight7, flight6};
         Flight[] actual = manager.findByDestinations("PRG", "MUN");
 
-        Arrays.sort(actual);
-
         assertArrayEquals(actual, expected);
     }
 
@@ -69,8 +68,6 @@ public class ManagerTest {
     void shouldReturnNullIfFindByDestinationNotFound() {
         Flight[] expected = new Flight[]{};
         Flight[] actual = manager.findByDestinations("MUN", "LED");
-
-        Arrays.sort(actual);
 
         assertArrayEquals(actual, expected);
     }

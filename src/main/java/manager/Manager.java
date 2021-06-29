@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import repository.Repository;
 
+import java.util.Arrays;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,6 +33,7 @@ public class Manager {
                 foundedFlights = tmp;
             }
         }
+        Arrays.sort(foundedFlights);
         return foundedFlights;
     }
 }
